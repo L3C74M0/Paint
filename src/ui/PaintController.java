@@ -10,6 +10,8 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -67,14 +69,19 @@ public class PaintController {
             }
         });
     }
+    
+    
     /*
      * El metodo sirve para guardar la imagen que se ha dibujado
+     * Se puede escoger la ruta donde sera guardado el archivo
      */
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
-
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File("paint.png"));
+            JFileChooser saveAs = new JFileChooser();
+            saveAs.setApproveButtonText("Guardar");
+            saveAs.showSaveDialog(null);
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.getSelectedFile()+""));
         } catch (IOException e) {
             System.out.println("Failed to save image");
         }
