@@ -11,7 +11,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -30,6 +29,7 @@ public class PaintController {
     private ComboBox<String> brushSize;
 
     public void initialize() {
+    	brushSize.setValue("12");
         brushSize.getItems().add("8");
         brushSize.getItems().add("9");
         brushSize.getItems().add("10");
@@ -56,7 +56,7 @@ public class PaintController {
         brushSize.getItems().add("82");
     	GraphicsContext g = canvas.getGraphicsContext2D();
 
-        canvas.setOnMouseDragged(e -> {
+    	canvas.setOnMouseDragged(e -> {
             double size = Double.parseDouble(brushSize.getValue());
             double x = e.getX() - size / 2;
             double y = e.getY() - size / 2;
@@ -68,7 +68,7 @@ public class PaintController {
                 g.fillRect(x, y, size, size);
             }
         });
-    }
+	}
     
     
     /*
@@ -81,7 +81,7 @@ public class PaintController {
             JFileChooser saveAs = new JFileChooser();
             saveAs.setApproveButtonText("Guardar");
             saveAs.showSaveDialog(null);
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.getSelectedFile()+""));
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.getSelectedFile()+".png"));
         } catch (IOException e) {
             System.out.println("Failed to save image");
         }
