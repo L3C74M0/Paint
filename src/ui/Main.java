@@ -11,6 +11,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("window.fxml"))));
         stage.setTitle("Paint");
+        stage.setResizable(false);
         stage.show();
     }
 
