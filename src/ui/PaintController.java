@@ -14,13 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
-<<<<<<< HEAD
 import java.awt.image.BufferedImage;
-=======
-import javax.swing.filechooser.FileNameExtensionFilter;
-
->>>>>>> a10e8e286d46f7072a44401bfb734765989170d3
 import java.io.File;
 import java.io.IOException;
 
@@ -106,7 +100,6 @@ public class PaintController {
      */
     @FXML
     void loadImage(ActionEvent event) {
-<<<<<<< HEAD
     	FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilterJPG =  new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
         FileChooser.ExtensionFilter extFilterjpg =  new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
@@ -121,16 +114,6 @@ public class PaintController {
             Image image = SwingFXUtils.toFXImage(bufferedImage, null);
             canvas.getGraphicsContext2D().drawImage(image, 0, 0);
         } catch (IOException e) {}
-=======
-    	JFileChooser fc = new JFileChooser();
-    	fc.addChoosableFileFilter(new FileNameExtensionFilter(".Images","jpg", "png", "PNG", "JPEG", "JPG"));
-    	fc.setApproveButtonText("Load");
-    	int result = fc.showSaveDialog(null);
-    	if(result == JFileChooser.APPROVE_OPTION) {
-    		Image img = new Image(fc.getSelectedFile().toURI().toString(), canvas.getWidth(), canvas.getHeight(), false, true);
-        	canvas.getGraphicsContext2D().drawImage(img, 0, 0);
-    	}
->>>>>>> a10e8e286d46f7072a44401bfb734765989170d3
     }
     
     /**
@@ -141,13 +124,15 @@ public class PaintController {
     public void onSave() {
         try {
             Image snapshot = canvas.snapshot(null, null);
-            JFileChooser saveAs = new JFileChooser();
-            saveAs.setApproveButtonText("Save");
-            saveAs.showSaveDialog(null);
-            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.getSelectedFile()+".png"));
-        } catch (IOException e) {
-            System.out.println("Failed to save image");
-        }
+            FileChooser saveAs = new FileChooser();
+            saveAs.setTitle("Save");
+            FileChooser.ExtensionFilter extFilterJPG =  new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterjpg =  new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+            FileChooser.ExtensionFilter extFilterPNG =  new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+            FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+            saveAs.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+            ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.showSaveDialog(null)+""));
+        } catch (IOException e) {}
     }
 
     /**

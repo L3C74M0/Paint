@@ -14,11 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<BorderPane fx:id="borderPane" prefHeight="512.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
-=======
 <BorderPane prefHeight="512.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
->>>>>>> a10e8e286d46f7072a44401bfb734765989170d3
 
     <top>
         <VBox>
