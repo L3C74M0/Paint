@@ -9,20 +9,19 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="760.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
+<BorderPane fx:id="borderPane" prefHeight="512.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
 
     <top>
         <VBox>
             <MenuBar>
                 <Menu text="File">
                     <MenuItem onAction="#onSave" text="Save" />
+               <MenuItem mnemonicParsing="false" onAction="#loadImage" text="Load image" />
                     <MenuItem onAction="#onExit" text="Exit" />
                 </Menu>
             </MenuBar>
@@ -35,32 +34,15 @@
                   </font>
                </Label>
                <ComboBox fx:id="brushSize" prefHeight="31.0" prefWidth="72.0" promptText="" />
-               <Label text="  Color  ">
-                  <font>
-                     <Font size="18.0" />
-                  </font>
-               </Label>
                     <ColorPicker fx:id="colorPicker" />
-               <Label text="  Borrador  ">
-                  <font>
-                     <Font size="18.0" />
-                  </font>
-               </Label>
-                    <CheckBox fx:id="eraser">
-                  <graphic>
-                     <ImageView fitHeight="40.0" fitWidth="40.0">
-                        <image>
-                           <Image url="@../../imgs/eraser.jpg" />
-                        </image>
-                     </ImageView>
-                  </graphic></CheckBox>
+                    <CheckBox fx:id="eraser" text="Borrador" />
                 </HBox>
             </ToolBar>
         </VBox>
     </top>
 
     <center>
-        <Canvas fx:id="canvas" height="700.0" width="650.0" />
+        <Canvas fx:id="canvas" height="449.0" width="650.0" />
     </center>
 
 </BorderPane>
