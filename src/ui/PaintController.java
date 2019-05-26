@@ -10,13 +10,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
-
+import javafx.scene.shape.Circle;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PaintController {
 
@@ -31,6 +32,11 @@ public class PaintController {
     
     @FXML
     private ComboBox<String> brushSize;
+    
+    @FXML
+    private Circle circles1;
+    
+    //private ArrayList<Circle> circles;
 
     
     /**
@@ -40,6 +46,9 @@ public class PaintController {
     @FXML
     public void initialize() {
     	brushSize.setValue("12");
+    	brushSize.getItems().add("2");
+    	brushSize.getItems().add("4");
+    	brushSize.getItems().add("6");
         brushSize.getItems().add("8");
         brushSize.getItems().add("9");
         brushSize.getItems().add("10");
@@ -65,7 +74,6 @@ public class PaintController {
         brushSize.getItems().add("78");
         brushSize.getItems().add("82");
     	GraphicsContext g = canvas.getGraphicsContext2D();
-
     	canvas.setOnMouseDragged(e -> {
             double size = Double.parseDouble(brushSize.getValue());
             double x = e.getX() - size / 2;
@@ -79,7 +87,7 @@ public class PaintController {
             }
         });
 	}
-    
+
     /**
      * This method allows the user to choose an image from file system and add it to the canvas,
      * where it's possible to draw over it.
@@ -116,8 +124,6 @@ public class PaintController {
             System.out.println("Failed to save image");
         }
     }
-    
-    
 
     /**
      * This methods allows to close the program when the exit button is pressed.
