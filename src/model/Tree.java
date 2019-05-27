@@ -2,9 +2,9 @@ package model;
 
 import java.util.Random;
 
-public class Tree {
+public class Tree implements Measurable {
 
-	private Node root;
+	private TreeNode root;
 	
 	/**
 	 * Basic constructor for Tree class.
@@ -20,10 +20,10 @@ public class Tree {
 	 * add the new node.
 	 * post: the new node created with required value is going to be added to the tree.
 	 * @param value the value needed to create the new node.
-	 * @see #addNode(Node, Node)
+	 * @see #addNode(TreeNode, TreeNode)
 	 */
 	public void addNode(int value) {
-		Node n = new Node(value);
+		TreeNode n = new TreeNode(value);
 		if(root == null) {
 			root = n;
 		} else {
@@ -38,7 +38,7 @@ public class Tree {
 	 * @param n the new node.
 	 * @param current the necessary node reference to apply recursion.
 	 */
-	public void addNode(Node n, Node current) {
+	public void addNode(TreeNode n, TreeNode current) {
 		if(n.getValue() <= current.getValue()) {
 			if(current.getLeft() == null) {
 				current.setLeft(n);
@@ -60,7 +60,7 @@ public class Tree {
 	 * a random node from the tree, otherwise it returns null.
 	 * @return a partly-random chosen node or null.
 	 */
-	public Node selectRandomNode() {
+	public TreeNode selectRandomNode() {
 		int size = size();
 		if(root == null) {
 			return null;
@@ -78,7 +78,7 @@ public class Tree {
 	 * and making it more efficient.
 	 * @return current the node which has been chosen by a random condition inside the method.
 	 */
-	private Node selectRandomNode(Node current, int size) {
+	private TreeNode selectRandomNode(TreeNode current, int size) {
 		if(current != null) {
 			if(current.getRight() != null || current.getLeft() != null) {
 				if(1.0 / (Math.random()*(size+1)) <= 1.0/size) {
@@ -108,8 +108,9 @@ public class Tree {
 	 * This method returns the size or also called weight of the tree. In case that root == null
 	 * it returns 0, otherwise it calls the recursive method for size to calculate this value.
 	 * post: the returned value is the number of nodes in the tree.
-	 * @see #size(Node)
+	 * @see #size(TreeNode)
 	 */
+	@Override
 	public int size() {
 		if(root == null) {
 			return 0;
@@ -124,7 +125,7 @@ public class Tree {
 	 * @param current the necessary parameter to make this function recursive.
 	 * @return size the correspondent weight of the tree.
 	 */
-	private int size(Node current) {
+	private int size(TreeNode current) {
 		int size = 1;
 		if(current.getLeft() != null) {
 			size += size(current.getLeft());
@@ -139,7 +140,7 @@ public class Tree {
 	 * Getter method for root attribute.
 	 * @return root the reference for the root node of the tree.
 	 */
-	public Node getRoot() {
+	public TreeNode getRoot() {
 		return root;
 	}
 	

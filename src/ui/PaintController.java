@@ -13,10 +13,14 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import javax.imageio.ImageIO;
+import model.List;
+import model.Tree;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class PaintController {
 	
@@ -38,8 +42,8 @@ public class PaintController {
     @FXML
     private Circle circles1;
     
-    //private ArrayList<Circle> circles;
-
+    private Tree tree;
+    private List list;
     
     /**
      * This method initializes the options to choose the pencil size and sets 
@@ -88,12 +92,21 @@ public class PaintController {
                 g.fillRect(x, y, size, size);
             }
         });
+    	
+    	tree = new Tree();
+    	for (int i = 1; i <= 20; i++) {
+			tree.addNode(i);
+		}
+    	list = new List();
+    	for (int i = 1; i <= 20; i++) {
+			list.addNode(i);
+		}
 	}
 
     /**
      * This method allows the user to choose an image from file system and add it to the canvas,
      * where it's possible to draw over it.
-     * Pre: an image with .jgp or .png format has to be selected and the <<OK>> button in the 
+     * pre: an image with .jgp or .png format has to be selected and the <<OK>> button in the 
      * file chooser has to be pressed, otherwise the image isn't going to be loaded.
      * Post: the image is going to be displayed in the canvas.
      * @param event the event received after clicking on the <<Load image>> button.
@@ -106,20 +119,22 @@ public class PaintController {
         FileChooser.ExtensionFilter extFilterPNG =  new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
         FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
         fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-
         File file = fileChooser.showOpenDialog(null);
-        
         try {
-            BufferedImage bufferedImage = ImageIO.read(file);
-            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-            canvas.getGraphicsContext2D().drawImage(image, 0, 0);
-        } catch (IOException e) {}
+        	if(file != null) {
+        		BufferedImage bufferedImage = ImageIO.read(file);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                canvas.getGraphicsContext2D().drawImage(image, 0, 0);
+        	}
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }        
     }
     
     /**
      * This method allows to save the drawn image in the specified path.
-     * Pre: the specified path has to exist in the file system.
-     * Post: The image will be saved successfully.
+     * pre: the specified path has to exist in the file system.
+     * post: The image will be saved successfully.
      */
     public void onSave() {
         try {
@@ -132,11 +147,42 @@ public class PaintController {
             FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
             saveAs.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
             ImageIO.write(SwingFXUtils.fromFXImage(snapshot, null), "png", new File(saveAs.showSaveDialog(null)+""));
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+    }
+    
+    @FXML
+    void prevImg(ActionEvent event) {
+    	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    	list.selectPrevious();
+    	String imageFile = list.lastSelected().getValue()+".jpg";
+    	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
+    	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
+    	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
+    }
+    
+    @FXML
+    void nextImg(ActionEvent event) {
+    	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    	list.selectNext();
+    	String imageFile = list.lastSelected().getValue()+".jpg";
+    	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
+    	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
+    	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
     }
 
+    @FXML
+    void randomImg(ActionEvent event) throws IOException {
+    	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    	String imageFile = tree.selectRandomNode().getValue()+".jpg";
+    	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
+    	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
+    	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
+    }
+    
     /**
-     * This methods allows to close the program when the exit button is pressed.
+     * This method allows to close the program when the exit button is pressed.
      */
     public void onExit() {
         Platform.exit();

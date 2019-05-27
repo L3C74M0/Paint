@@ -2,34 +2,15 @@ package model;
 
 public class Node {
 
-	private Node left;
-	private Node right;
 	private int value;
 	
 	/**
 	 * Constructor for Node class.
-	 * @param val this integer is set to the value attribute.
+	 * post: a new instance of this class with it's correspondent value assigned can be created.
+	 * @param value the value for the actual node created.
 	 */
-	public Node(int val) {
-		this.value = val;
-	}
-	
-	//Getters and setters for left, right and value attributes:
-	
-	public Node getLeft() {
-		return left;
-	}
-
-	public void setLeft(Node left) {
-		this.left = left;
-	}
-
-	public Node getRight() {
-		return right;
-	}
-
-	public void setRight(Node right) {
-		this.right = right;
+	public Node(int value) {
+		this.setValue(value);
 	}
 
 	public int getValue() {
@@ -39,9 +20,10 @@ public class Node {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	
+
+	@Override
 	public String toString() {
-		return value+"";
+		return value + "";
 	}
 	
 }
