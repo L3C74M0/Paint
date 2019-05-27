@@ -1,6 +1,6 @@
 package model;
 
-public class Node {
+public class Image {
 
 	private int value;
 	
@@ -9,7 +9,7 @@ public class Node {
 	 * post: a new instance of this class with it's correspondent value assigned can be created.
 	 * @param value the value for the actual node created.
 	 */
-	public Node(int value) {
+	public Image(int value) {
 		this.setValue(value);
 	}
 

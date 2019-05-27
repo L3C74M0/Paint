@@ -1,15 +1,15 @@
 package model;
 
-public class List implements Measurable {
+public class ListOfImages implements Measurable {
 
-	private ListNode first;
+	private ImageOnList first;
 
 	/**
 	 * Basic constructor for List class. post: a new instance of List with a
 	 * ListNode reference as attribute first equals to null can be created.
 	 */
-	public List() {
-
+	public ListOfImages() {
+		
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class List implements Measurable {
 	 * @see #addNode(ListNode, ListNode)
 	 */
 	public void addNode(int value) {
-		ListNode n = new ListNode(value);
+		ImageOnList n = new ImageOnList(value);
 		if (first == null) {
 			first = n;
 		} else {
@@ -39,8 +39,8 @@ public class List implements Measurable {
 	 * @param n       the node to be added.
 	 * @param current the needed parameter to make this method recursive.
 	 */
-	private void addNode(ListNode n, ListNode current) {
-		if (current.getNext() != null) {
+	private void addNode(ImageOnList n, ImageOnList current) {
+		if(current.getNext() != null) {
 			addNode(n, current.getNext());
 		} else {
 			current.setNext(n);
@@ -48,19 +48,17 @@ public class List implements Measurable {
 		}
 	}
 
-	// Getters and setters
-
-	public ListNode getFirst() {
+	public ImageOnList getFirst() {
 		return first;
 	}
 
-	public void setFirst(ListNode first) {
+	public void setFirst(ImageOnList first) {
 		this.first = first;
 	}
 
 	@Override
 	public int size() {
-		ListNode current = first;
+		ImageOnList current = first;
 		int size = 0;
 		while (current != null) {
 			size++;
@@ -70,7 +68,7 @@ public class List implements Measurable {
 	}
 
 	public void selectNext() {
-		ListNode last = lastSelected();
+		ImageOnList last = lastSelected();
 		if (last != null) {
 			last.setSelected(false);
 			if (last.getNext() != null) {
@@ -84,7 +82,7 @@ public class List implements Measurable {
 	}
 
 	public void selectPrevious() {
-		ListNode last = lastSelected();
+		ImageOnList last = lastSelected();
 		if (last != null) {
 			last.setSelected(false);
 			if (last.getPrevious() != null) {
@@ -96,24 +94,24 @@ public class List implements Measurable {
 			first.setSelected(true);
 		}
 	}
-
-	public ListNode getLastNode() {
-		if (first != null) {
-			ListNode ln = first;
-			while (ln.getNext() != null) {
+	
+	public ImageOnList getLastNode() {
+		if(first != null) {
+			ImageOnList ln = first;
+			while(ln.getNext() != null) {
 				ln = ln.getNext();
 			}
 			return ln;
 		} else {
 			return null;
 		}
-	}
-
-	public ListNode lastSelected() {
-		ListNode selected = null; // the last node selected
-		ListNode current = first; // the iterator
-		while (current != null && selected == null) { // it iterates over the list till the last selected node is found
-			if (current.isSelected()) { // verifies if the actual node was the last selected
+	}		
+	
+	public ImageOnList lastSelected() {
+		ImageOnList selected = null; //the last node selected
+		ImageOnList current = first; //the iterator
+		while(current != null && selected == null) { //it iterates over the list till the last selected node is found
+			if(current.isSelected()) { // verifies if the actual node was the last selected
 				selected = current; // updates the selected node reference
 			}
 			current = current.getNext(); // advances over the list
@@ -121,4 +119,5 @@ public class List implements Measurable {
 		return selected;// returns null if none of the nodes was selected, otherwise it returns the last
 						// selected
 	}
+
 }
