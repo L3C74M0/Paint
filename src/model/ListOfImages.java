@@ -3,7 +3,6 @@ package model;
 public class ListOfImages implements Measurable {
 
 	private ImageOnList first;
-	
 
 	/**
 	 * Basic constructor for ListOfImages class. post: a new instance of List with a

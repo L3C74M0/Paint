@@ -162,7 +162,6 @@ public class PaintController {
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
     }
-	
 
 	/**
 	 * This method allows the user to choose an image from file system and add it to
