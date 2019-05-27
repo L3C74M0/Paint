@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,22 +31,30 @@
 
             <ToolBar>
                 <HBox alignment="CENTER" spacing="5">
-               <Label text="Tamaño del Lapiz   ">
+               <Label text="Pencil size:">
                   <font>
                      <Font size="18.0" />
                   </font>
                </Label>
                <ComboBox fx:id="brushSize" prefHeight="31.0" prefWidth="72.0" promptText="" />
                     <ColorPicker fx:id="colorPicker" />
-                    <CheckBox fx:id="eraser" text="Borrador   " />
+                    <CheckBox fx:id="eraser" text="Borrador" />
                 </HBox>
-            <Button mnemonicParsing="false" onAction="#insertCircle" text="Insertar circulo" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Label text="Images:">
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </Label>
+            <Button fx:id="previous" mnemonicParsing="false" onAction="#prevImg" text="previous" />
+            <Button mnemonicParsing="false" onAction="#nextImg" text="next" />
+            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#randomImg" text="Random IMG" />
             </ToolBar>
         </VBox>
     </top>
-
-    <center>
-        <Canvas fx:id="canvas" height="624.0" width="800.0" />
-    </center>
+   <bottom>
+        <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
+   </bottom>
 
 </BorderPane>
