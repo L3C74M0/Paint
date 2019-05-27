@@ -19,7 +19,6 @@ import model.Tree;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -28,9 +27,14 @@ public class PaintController {
 	@FXML
 	private BorderPane borderPane;
 
+	@FXML
+	private Canvas canvas;
 
     @FXML
     private CheckBox eraser;
+    
+    @FXML
+    private ColorPicker colorPicker;
     
     @FXML
     private ComboBox<String> brushSize;
@@ -140,7 +144,7 @@ public class PaintController {
     	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
-
+    }
 	
 
 	/**
