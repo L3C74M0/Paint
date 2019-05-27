@@ -53,15 +53,9 @@
             </ToolBar>
         </VBox>
     </top>
-<<<<<<< HEAD
-   <bottom>
-        <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
-   </bottom>
-=======
 
     <center>
         <Canvas fx:id="canvas" height="458.0" width="665.0" />
     </center>
->>>>>>> ce9bd907a4cb8f1f2b362c854d09fa79a64d3b02
 
 </BorderPane>

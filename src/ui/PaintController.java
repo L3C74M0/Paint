@@ -13,8 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import model.List;
-import model.Tree;
+import model.ListOfImages;
+import model.TreeOfImages;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -42,8 +42,8 @@ public class PaintController {
     @FXML
     private Circle circles1;
     
-    private Tree tree;
-    private List list;
+    private TreeOfImages treeOfImages;
+    private ListOfImages listOfImages;
     
     /**
      * This method initializes the options to choose the pencil size and sets 
@@ -93,13 +93,13 @@ public class PaintController {
             }
         });
     	
-    	tree = new Tree();
+    	treeOfImages = new TreeOfImages();
     	for (int i = 1; i <= 20; i++) {
-			tree.addNode(i);
+			treeOfImages.addNode(i);
 		}
-    	list = new List();
+    	listOfImages = new ListOfImages();
     	for (int i = 1; i <= 20; i++) {
-			list.addNode(i);
+			listOfImages.addNode(i);
 		}
 	}
 
@@ -129,8 +129,8 @@ public class PaintController {
     @FXML
     void prevImg(ActionEvent event) {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    	list.selectPrevious();
-    	String imageFile = list.lastSelected().getValue()+".jpg";
+    	listOfImages.selectPrevious();
+    	String imageFile = listOfImages.lastSelected().getValue()+".jpg";
     	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
@@ -139,8 +139,8 @@ public class PaintController {
     @FXML
     void nextImg(ActionEvent event) {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    	list.selectNext();
-    	String imageFile = list.lastSelected().getValue()+".jpg";
+    	listOfImages.selectNext();
+    	String imageFile = listOfImages.lastSelected().getValue()+".jpg";
     	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
@@ -185,7 +185,7 @@ public class PaintController {
     @FXML
     void randomImg(ActionEvent event) throws IOException {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-    	String imageFile = tree.selectRandomNode().getValue()+".jpg";
+    	String imageFile = treeOfImages.selectRandomNode().getValue()+".jpg";
     	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
