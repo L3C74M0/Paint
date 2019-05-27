@@ -3,6 +3,11 @@ package model;
 public class ListOfImages implements Measurable {
 
 	private ImageOnList first;
+<<<<<<< HEAD:src/model/ListOfImages.java
+=======
+	
+	private ListNode first;
+>>>>>>> c6ef665689426a3144e14b4b59c361f91461e004:src/model/ListOfImages.java
 
 	/**
 	 * Basic constructor for List class. post: a new instance of List with a
@@ -10,6 +15,11 @@ public class ListOfImages implements Measurable {
 	 */
 	public ListOfImages() {
 		
+<<<<<<< HEAD:src/model/ListOfImages.java
+=======
+	public List() {
+
+>>>>>>> c6ef665689426a3144e14b4b59c361f91461e004:src/model/ListOfImages.java
 	}
 
 	/**
