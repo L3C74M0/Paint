@@ -17,7 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
+=======
+<BorderPane prefHeight="516.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
+>>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
 
     <top>
         <VBox>
@@ -40,10 +44,6 @@
                     <ColorPicker fx:id="colorPicker" />
                     <CheckBox fx:id="eraser" text="Borrador" />
                 </HBox>
-<<<<<<< HEAD
-=======
-
->>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Label text="Images:">
                <padding>
@@ -54,25 +54,16 @@
             <Button mnemonicParsing="false" onAction="#nextImg" text="next" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Button mnemonicParsing="false" onAction="#randomImg" text="Random IMG" />
-<<<<<<< HEAD
-=======
-
-            </ToolBar>
-        </VBox>
-    </top>
-   <bottom>
-        <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
-   </bottom>
-
-            <Button mnemonicParsing="false" onAction="#insertCircle" text="Insertar circulo" />
-
->>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
             </ToolBar>
         </VBox>
     </top>
 
     <center>
+<<<<<<< HEAD
         <Canvas fx:id="canvas" height="624.0" width="800.0" />
+=======
+        <Canvas fx:id="canvas" height="458.0" width="665.0" />
+>>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
     </center>
 
 </BorderPane>

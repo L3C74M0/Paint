@@ -17,11 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
 <BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
-=======
-<BorderPane prefHeight="516.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
->>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
 
     <top>
         <VBox>
@@ -57,13 +53,8 @@
             </ToolBar>
         </VBox>
     </top>
-
-    <center>
-<<<<<<< HEAD
-        <Canvas fx:id="canvas" height="624.0" width="800.0" />
-=======
-        <Canvas fx:id="canvas" height="458.0" width="665.0" />
->>>>>>> c6ef665689426a3144e14b4b59c361f91461e004
-    </center>
+   <bottom>
+        <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
+   </bottom>
 
 </BorderPane>
