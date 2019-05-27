@@ -19,19 +19,15 @@ import model.Tree;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 public class PaintController {
-	
-    @FXML
-    private BorderPane borderPane;
-    
-    @FXML
-    private Canvas canvas;
 
-    @FXML
-    private ColorPicker colorPicker;
+	@FXML
+	private BorderPane borderPane;
+
 
     @FXML
     private CheckBox eraser;
@@ -103,33 +99,7 @@ public class PaintController {
 		}
 	}
 
-    /**
-     * This method allows the user to choose an image from file system and add it to the canvas,
-     * where it's possible to draw over it.
-     * pre: an image with .jgp or .png format has to be selected and the <<OK>> button in the 
-     * file chooser has to be pressed, otherwise the image isn't going to be loaded.
-     * Post: the image is going to be displayed in the canvas.
-     * @param event the event received after clicking on the <<Load image>> button.
-     */
-    @FXML
-    void loadImage(ActionEvent event) {
-    	FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilterJPG =  new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterjpg =  new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter extFilterPNG =  new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
-        FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
-        fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-        File file = fileChooser.showOpenDialog(null);
-        try {
-        	if(file != null) {
-        		BufferedImage bufferedImage = ImageIO.read(file);
-                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-                canvas.getGraphicsContext2D().drawImage(image, 0, 0);
-        	}
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }        
-    }
+
     
     /**
      * This method allows to save the drawn image in the specified path.
@@ -170,7 +140,43 @@ public class PaintController {
     	String path = System.getProperty("user.dir").replace(File.separator, "/") + "/src/ui/img/" + imageFile;
     	Image image = new Image("file:///"+path, canvas.getWidth(), canvas.getHeight(), false, false);
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
+
+	
+
+	/**
+	 * This method allows the user to choose an image from file system and add it to
+	 * the canvas, where it's possible to draw over it. Pre: an image with .jgp or
+	 * .png format has to be selected and the <<OK>> button in the file chooser has
+	 * to be pressed, otherwise the image isn't going to be loaded. Post: the image
+	 * is going to be displayed in the canvas.
+	 * 
+	 * @param event the event received after clicking on the <<Load image>> button.
+	 */
+	@FXML
+	void loadImage(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+		FileChooser.ExtensionFilter extFilterjpg = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+		FileChooser.ExtensionFilter extFilterpng = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+		fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+		File file = fileChooser.showOpenDialog(null);
+
+		try {
+			BufferedImage bufferedImage = ImageIO.read(file);
+			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+			canvas.getGraphicsContext2D().drawImage(image, 0, 0, 800, 624);
+		} catch (IOException e) {
+		} catch (IllegalArgumentException e) {
+		}
+	}
+	
+    @FXML
+    void insertCircle(ActionEvent event) {
+    //	canvas.fillCircle(canvas.getOnMouseDragged(), currentYLocation, getDiameter());
+
     }
+
 
     @FXML
     void randomImg(ActionEvent event) throws IOException {
@@ -187,4 +193,5 @@ public class PaintController {
     public void onExit() {
         Platform.exit();
     }
+
 }
