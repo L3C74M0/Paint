@@ -4,15 +4,13 @@ public class ListOfImages implements Measurable {
 
 	private ImageOnList first;
 	
-	private ListNode first;
 
 	/**
-	 * Basic constructor for List class. post: a new instance of List with a
+	 * Basic constructor for ListOfImages class. post: a new instance of List with a
 	 * ListNode reference as attribute first equals to null can be created.
 	 */
-	public ListOfImages() {
 		
-	public List() {
+	public ListOfImages() {
 
 	}
 
@@ -52,14 +50,27 @@ public class ListOfImages implements Measurable {
 		}
 	}
 
+	/**
+	 * @return first the reference for the first item from the doubly linked list of Images.
+	 */
 	public ImageOnList getFirst() {
 		return first;
 	}
 
+	/**
+	 * Setter method for <first> attribute.
+	 * @param first the object of the type ImageOnList to replace the list's first object reference.
+	 */
 	public void setFirst(ImageOnList first) {
 		this.first = first;
 	}
 
+	
+	/**
+	 * This method counts every object in the list and returns that value.
+	 * post: the returned value is going to be the total number of nodes in the list.
+	 * @return size the size of the list.
+	 */
 	@Override
 	public int size() {
 		ImageOnList current = first;
@@ -71,6 +82,15 @@ public class ListOfImages implements Measurable {
 		return size;
 	}
 
+	/**
+	 * This method sets the <selected> attribute from the last selected object in the list to false, 
+	 * and sets its next's to true. When none of the nodes in the list has been selected in the list 
+	 * ever before, the selected item will be the first node of the list. 
+	 * pre: there must be just 0 or 1 items selected in the list, otherwise the selection function is 
+	 * going to go wrong.
+	 * post: one and only one item in the list will be selected.
+	 * @see #lastSelected()
+	 */
 	public void selectNext() {
 		ImageOnList last = lastSelected();
 		if (last != null) {
@@ -85,6 +105,15 @@ public class ListOfImages implements Measurable {
 		}
 	}
 
+	/**
+	 * This method sets the <selected> attribute from the last selected object in the list to false, 
+	 * and sets its previous's to true. When none of the nodes in the list has been selected in the list 
+	 * ever before, the selected item will be the first node of the list. 
+	 * pre: there must be just 0 or 1 items selected in the list, otherwise the selection function is 
+	 * going to go wrong.
+	 * post: one and only one item in the list will be selected.
+	 * @see #lastSelected()
+	 */
 	public void selectPrevious() {
 		ImageOnList last = lastSelected();
 		if (last != null) {
@@ -99,6 +128,10 @@ public class ListOfImages implements Measurable {
 		}
 	}
 	
+	/**
+	 * If the first reference != null, this method returns the last object from the list, otherwise it returns null.
+	 * @return last object from a not-empty list or null.
+	 */
 	public ImageOnList getLastNode() {
 		if(first != null) {
 			ImageOnList ln = first;
@@ -106,11 +139,15 @@ public class ListOfImages implements Measurable {
 				ln = ln.getNext();
 			}
 			return ln;
-		} else {
-			return null;
-		}
+		} 
+		return null;
 	}		
 	
+	/**
+	 * If the first reference != null, this method returns the last object from the list, otherwise it returns null.
+	 * @return selected which can be null only when the list of images is empty, otherwise it's going to be the last 
+	 * selected image.
+	 */
 	public ImageOnList lastSelected() {
 		ImageOnList selected = null; //the last node selected
 		ImageOnList current = first; //the iterator

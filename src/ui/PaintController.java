@@ -127,6 +127,14 @@ public class PaintController {
         }
     }
     
+    /**
+	 * This method uses the doubly linked list from the model package to select the next node (image) from it, then an image 
+	 * from the ui/img package is selected and displayed in the canvas.
+	 * pre: listOfImages != null && the list cannot be empty -> list.size() != 0. 
+	 * post: the next selected image from the list will be selected and it's correspondent representation is 
+	 * displayed on the canvas.
+	 * @see #listOfImages
+	 */
     @FXML
     void prevImg(ActionEvent event) {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -137,6 +145,14 @@ public class PaintController {
     	canvas.getGraphicsContext2D().drawImage(image, 0, 0);
     }
     
+    /**
+	 * This method uses the doubly linked list from the model package to select the previous node (image) from it, then an image 
+	 * from the ui/img package is selected and displayed in the canvas.
+	 * pre: listOfImages != null && the list cannot be empty -> listOfImages.size() != 0. 
+	 * post: the previous selected image from the list will be selected and it's correspondent representation is 
+	 * displayed on the canvas.
+	 * @see #listOfImages
+	 */
     @FXML
     void nextImg(ActionEvent event) {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -154,7 +170,6 @@ public class PaintController {
 	 * .png format has to be selected and the <<OK>> button in the file chooser has
 	 * to be pressed, otherwise the image isn't going to be loaded. Post: the image
 	 * is going to be displayed in the canvas.
-	 * 
 	 * @param event the event received after clicking on the <<Load image>> button.
 	 */
 	@FXML
@@ -176,6 +191,13 @@ public class PaintController {
 		}
 	}
 
+	/**
+	 * This method uses the binary tree from the model package to select a random node (image) from it, then an image 
+	 * from the ui/img package is selected and displayed in the canvas.
+	 * pre: tree != null && the tree cannot be empty -> tree.size() != 0. 
+	 * post: a random selected image from the tree will be selected and it's correspondent representation is 
+	 * displayed on the canvas.
+	 */
     @FXML
     void randomImg(ActionEvent event) throws IOException {
     	canvas.getGraphicsContext2D().clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
