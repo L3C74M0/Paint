@@ -41,5 +41,4 @@ public class ListNode extends Node {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	
 }
