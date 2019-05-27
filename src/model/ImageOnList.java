@@ -41,5 +41,4 @@ public class ImageOnList extends Image {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
-	
 }

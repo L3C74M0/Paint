@@ -4,37 +4,43 @@ public class ListOfImages implements Measurable {
 
 	private ImageOnList first;
 	
+	private ListNode first;
+
 	/**
-	 * Basic constructor for List class.
-	 * post: a new instance of List with a ListNode reference as attribute first equals to 
-	 * null can be created.
+	 * Basic constructor for List class. post: a new instance of List with a
+	 * ListNode reference as attribute first equals to null can be created.
 	 */
 	public ListOfImages() {
 		
+	public List() {
+
 	}
 
 	/**
-	 * This method adds a new node, which value is passed as parameter, to the doubly linked list.
-	 * If the first reference == null, the new node is going to be the first, otherwise, the node 
-	 * is going to be added to the end of the list by calling another method.
-	 * post: the new node is going to be added to the list.
+	 * This method adds a new node, which value is passed as parameter, to the
+	 * doubly linked list. If the first reference == null, the new node is going to
+	 * be the first, otherwise, the node is going to be added to the end of the list
+	 * by calling another method. post: the new node is going to be added to the
+	 * list.
+	 * 
 	 * @param value is the integer which the new node will be created with.
 	 * @see #addNode(ListNode, ListNode)
 	 */
 	public void addNode(int value) {
 		ImageOnList n = new ImageOnList(value);
-		if(first == null) {
+		if (first == null) {
 			first = n;
 		} else {
 			addNode(n, first);
 		}
 	}
-	
+
 	/**
 	 * This method adds a new node to the doubly linked list in a recursive way.
-	 * pre: n != null && current != null.
-	 * post: the node is going to be added at the end of the list.
-	 * @param n the node to be added.
+	 * pre: n != null && current != null. post: the node is going to be added at the
+	 * end of the list.
+	 * 
+	 * @param n       the node to be added.
 	 * @param current the needed parameter to make this method recursive.
 	 */
 	private void addNode(ImageOnList n, ImageOnList current) {
@@ -45,8 +51,6 @@ public class ListOfImages implements Measurable {
 			n.setPrevious(current);
 		}
 	}
-	
-	//Getters and setters
 
 	public ImageOnList getFirst() {
 		return first;
@@ -60,18 +64,18 @@ public class ListOfImages implements Measurable {
 	public int size() {
 		ImageOnList current = first;
 		int size = 0;
-		while(current != null) {
+		while (current != null) {
 			size++;
 			current = current.getNext();
 		}
 		return size;
 	}
-	
+
 	public void selectNext() {
 		ImageOnList last = lastSelected();
-		if(last != null) {
+		if (last != null) {
 			last.setSelected(false);
-			if(last.getNext() != null) {
+			if (last.getNext() != null) {
 				last.getNext().setSelected(true);
 			} else {
 				first.setSelected(true);
@@ -80,12 +84,12 @@ public class ListOfImages implements Measurable {
 			first.setSelected(true);
 		}
 	}
-	
+
 	public void selectPrevious() {
 		ImageOnList last = lastSelected();
-		if(last != null) {
+		if (last != null) {
 			last.setSelected(false);
-			if(last.getPrevious() != null) {
+			if (last.getPrevious() != null) {
 				last.getPrevious().setSelected(true);
 			} else {
 				getLastNode().setSelected(true);
@@ -105,7 +109,7 @@ public class ListOfImages implements Measurable {
 		} else {
 			return null;
 		}
-	}
+	}		
 	
 	public ImageOnList lastSelected() {
 		ImageOnList selected = null; //the last node selected
@@ -116,7 +120,8 @@ public class ListOfImages implements Measurable {
 			}
 			current = current.getNext(); // advances over the list
 		}
-		return selected;//returns null if none of the nodes was selected, otherwise it returns the last selected
+		return selected;// returns null if none of the nodes was selected, otherwise it returns the last
+						// selected
 	}
-	
+
 }

@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+
 import model.ListOfImages;
 import model.TreeOfImages;
 
@@ -174,13 +175,6 @@ public class PaintController {
 		} catch (IllegalArgumentException e) {
 		}
 	}
-	
-    @FXML
-    void insertCircle(ActionEvent event) {
-    //	canvas.fillCircle(canvas.getOnMouseDragged(), currentYLocation, getDiameter());
-
-    }
-
 
     @FXML
     void randomImg(ActionEvent event) throws IOException {
