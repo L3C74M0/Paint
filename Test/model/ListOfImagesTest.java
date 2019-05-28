@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
@@ -9,16 +10,16 @@ class ListOfImagesTest {
 
 	private void setupStage1() {
 		list = new ListOfImages();
+	}
+
+	private void setupStage2() {
+		setupStage1();
 		list.addNode(0);
 		list.addNode(3);
 		list.addNode(6);
 		list.addNode(2);
 		list.addNode(5);
 		list.addNode(4);
-	}
-
-	private void setupStage2() {
-
 	}
 
 	@Test
@@ -30,12 +31,13 @@ class ListOfImagesTest {
 
 	@Test
 	void testListOfImages() {
-
+		setupStage1();
+		assertNotNull(list, "The object can not be null, since it has just been instantiated");
 	}
 
 	@Test
 	void testAddNode() {
-		setupStage1();
+		setupStage2();
 		assertNotNull(list.getFirst(),
 				"The first element must not be null since the first element has just been added to the list");
 		assertNotNull(list.getFirst().getNext(),
@@ -60,23 +62,33 @@ class ListOfImagesTest {
 
 	@Test
 	void testGetFirst() {
-
+		ListOfImages tmp = new ListOfImages();
+		assertEquals(null, tmp.getFirst(), "The object must be null, since it has not been instantiated.");
+		tmp.addNode(23);
+		assertEquals(tmp.getFirst().getValue(), 23,
+				"The value of the first should be 23, not: " + tmp.getFirst().getValue());
 	}
 
 	@Test
 	void testSetFirst() {
-
+		setupStage2();
+		ImageOnList temp = new ImageOnList(21);
+		list.setFirst(temp);
+		assertEquals(temp, list.getFirst(),
+				"The first object should have a value of " + temp.getValue() + ", not " + list.getFirst());
+		assertNotEquals(list.getFirst().getValue(), 0, "The first object was not replaced");
+		assertNotNull(list.getFirst(), "The first object must not be null since it has just been replaced by another");
 	}
 
 	@Test
 	void testSize() {
-		setupStage1();
+		setupStage2();
 		assertEquals(6, list.size());
 	}
 
 	@Test
 	void testSelectPrevious() {
-
+		
 	}
 
 	@Test
