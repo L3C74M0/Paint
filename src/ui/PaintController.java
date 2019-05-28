@@ -35,6 +35,9 @@ public class PaintController {
     
     @FXML
     private ComboBox<String> brushSize;
+    
+    @FXML
+    private ComboBox<String> pencilType;
 
     private TreeOfImages treeOfImages;
     private ListOfImages listOfImages;
@@ -73,19 +76,31 @@ public class PaintController {
         brushSize.getItems().add("72");
         brushSize.getItems().add("78");
         brushSize.getItems().add("82");
+        pencilType.setValue("1");
+        pencilType.getItems().add("1");
+        pencilType.getItems().add("2");
+        pencilType.getItems().add("3");
     	GraphicsContext g = canvas.getGraphicsContext2D();
-    	canvas.setOnMouseDragged(e -> {
-            double size = Double.parseDouble(brushSize.getValue());
-            double x = e.getX() - size / 2;
-            double y = e.getY() - size / 2;
+		canvas.setOnMouseDragged(e -> {
+			double size = Double.parseDouble(brushSize.getValue());
+			double x = e.getX() - size / 2;
+			double y = e.getY() - size / 2;
 
-            if (eraser.isSelected()) {
-                g.clearRect(x, y, size, size);
-            } else {
-                g.setFill(colorPicker.getValue());
-                g.fillRect(x, y, size, size);
-            }
-        });
+			if (eraser.isSelected()) {
+				g.clearRect(x, y, size, size);
+			} else {
+				g.setFill(colorPicker.getValue());
+				if (pencilType.getValue().equalsIgnoreCase("1")) {
+					g.fillRect(x, y, size, size);
+				} else if (pencilType.getValue().equalsIgnoreCase("2")) {
+					g.fillOval(x, y, size, size);
+				} else if (pencilType.getValue().equalsIgnoreCase("3")) {
+					g.fillRoundRect(x, y, size, size, 10, 10);
+				} else {
+					g.fillRect(x, y, size, size);
+				}
+			}
+		});
     	
     	treeOfImages = new TreeOfImages();
     	for (int i = 1; i <= 20; i++) {
@@ -177,7 +192,7 @@ public class PaintController {
 		try {
 			BufferedImage bufferedImage = ImageIO.read(file);
 			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-			canvas.getGraphicsContext2D().drawImage(image, 0, 0, 800, 624);
+			canvas.getGraphicsContext2D().drawImage(image, 0, 0, 962, 624);
 		} catch (IOException e) {
 		} catch (IllegalArgumentException e) {
 		}
