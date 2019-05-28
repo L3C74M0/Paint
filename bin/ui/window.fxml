@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
+<BorderPane prefHeight="701.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.PaintController">
 
     <top>
         <VBox>
@@ -36,10 +36,16 @@
                      <Font size="18.0" />
                   </font>
                </Label>
-               <ComboBox fx:id="brushSize" prefHeight="31.0" prefWidth="72.0" promptText="" />
+               <ComboBox fx:id="brushSize" prefHeight="31.0" prefWidth="70.0" promptText="" />
                     <ColorPicker fx:id="colorPicker" />
                     <CheckBox fx:id="eraser" text="Borrador" />
+               <Label layoutX="10.0" layoutY="12.0" text="Pencil type:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
                 </HBox>
+            <ComboBox fx:id="pencilType" prefHeight="31.0" prefWidth="70.0" promptText="" />
             <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
             <Label text="Images:">
                <padding>
@@ -53,8 +59,8 @@
             </ToolBar>
         </VBox>
     </top>
-   <bottom>
-        <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
-   </bottom>
+   <center>
+        <Canvas fx:id="canvas" height="624.0" width="962.0" BorderPane.alignment="CENTER" />
+   </center>
 
 </BorderPane>

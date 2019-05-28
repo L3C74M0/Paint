@@ -1,6 +1,7 @@
 package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -8,19 +9,23 @@ import org.junit.jupiter.api.Test;
 
 class ListOfImagesTest {
 	private ListOfImages list;
-
+	
+	private void setupStage() {
+	
+	}
+	
 	private void setupStage1() {
 		list = new ListOfImages();
+	}
+
+	private void setupStage2() {
+		setupStage1();
 		list.addNode(0);
 		list.addNode(3);
 		list.addNode(6);
 		list.addNode(2);
 		list.addNode(5);
 		list.addNode(4);
-	}
-
-	private void setupStage2() {
-
 	}
 
 	@Test
@@ -33,14 +38,15 @@ class ListOfImagesTest {
 
 	@Test
 	void testListOfImages() {
-		setupStage2();
-		ListOfImages loi = new ListOfImages();
-		assertTrue(loi.getFirst() == null, "The list is not empty");
+		setupStage();
+		ListOfImages list = new ListOfImages();
+		assertNotNull(list, "The object can not be null, since it has just been instantiated");
+		assertTrue(list.getFirst() == null, "The list is not empty");
 	}
 
 	@Test
 	void testAddNode() {
-		setupStage1();
+		setupStage2();
 		assertNotNull(list.getFirst(),
 				"The first element must not be null since the first element has just been added to the list");
 		assertNotNull(list.getFirst().getNext(),
@@ -65,20 +71,24 @@ class ListOfImagesTest {
 
 	@Test
 	void testGetFirst() {
-		setupStage1();
+		setupStage2();
 		assertTrue(list.getFirst().getValue() == 0, "The attribute first hasn't been initialized correctly");
 	}
 
 	@Test
 	void testSetFirst() {
-		setupStage1();
-		list.setFirst(null);
-		assertTrue(list.getFirst() == null, "The setter method didn't work");
+		setupStage2();
+		ImageOnList temp = new ImageOnList(21);
+		list.setFirst(temp);
+		assertEquals(temp, list.getFirst(),
+				"The first object should have a value of " + temp.getValue() + ", not " + list.getFirst());
+		assertNotEquals(list.getFirst().getValue(), 0, "The first object was not replaced");
+		assertNotNull(list.getFirst(), "The first object must not be null since it has just been replaced by another");
 	}
 
 	@Test
 	void testSize() {
-		setupStage1();
+		setupStage2();
 		assertEquals(6, list.size());
 	}
 
