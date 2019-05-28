@@ -37,6 +37,12 @@ public class PaintController {
     private ComboBox<String> brushSize;
     
     @FXML
+    private CheckBox shape;
+
+    @FXML
+    private ComboBox<String> shapes;
+    
+    @FXML
     private ComboBox<String> pencilType;
 
     private TreeOfImages treeOfImages;
@@ -80,6 +86,12 @@ public class PaintController {
         pencilType.getItems().add("1");
         pencilType.getItems().add("2");
         pencilType.getItems().add("3");
+        shapes.getItems().add("Round rectangle stroke");
+		shapes.getItems().add("Oval stroke");
+		shapes.getItems().add("Rectangle stroke");
+		shapes.getItems().add("Round rectangle magic");
+		shapes.getItems().add("Oval magic");
+		shapes.getItems().add("Rectangle magic");
     	GraphicsContext g = canvas.getGraphicsContext2D();
 		canvas.setOnMouseDragged(e -> {
 			double size = Double.parseDouble(brushSize.getValue());
@@ -89,15 +101,37 @@ public class PaintController {
 			if (eraser.isSelected()) {
 				g.clearRect(x, y, size, size);
 			} else {
-				g.setFill(colorPicker.getValue());
-				if (pencilType.getValue().equalsIgnoreCase("1")) {
-					g.fillRect(x, y, size, size);
-				} else if (pencilType.getValue().equalsIgnoreCase("2")) {
-					g.fillOval(x, y, size, size);
-				} else if (pencilType.getValue().equalsIgnoreCase("3")) {
-					g.fillRoundRect(x, y, size, size, 10, 10);
+				if (shape.isSelected()) {
+					if (shapes.getValue().equals("Rectangle stroke")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeRect(x, y, size, size);
+					} else if (shapes.getValue().equals("Oval stroke")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeOval(x, y, size, size);
+					} else if (shapes.getValue().equals("Round rectangle stroke")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeRoundRect(x, y, size, size, 80, 80);
+					} else if (shapes.getValue().equals("Rectangle magic")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeRect(x, y, x+size, y+size);
+					} else if (shapes.getValue().equals("Oval magic")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeOval(x, y, x+size, y+size);
+					} else if (shapes.getValue().equals("Round rectangle magic")) {
+						g.setStroke(colorPicker.getValue());
+						g.strokeRoundRect(x, y, x+size, y+size, 80, 80);
+					}
 				} else {
-					g.fillRect(x, y, size, size);
+					g.setFill(colorPicker.getValue());
+					if (pencilType.getValue().equalsIgnoreCase("1")) {
+						g.fillRect(x, y, size, size);
+					} else if (pencilType.getValue().equalsIgnoreCase("2")) {
+						g.fillOval(x, y, size, size);
+					} else if (pencilType.getValue().equalsIgnoreCase("3")) {
+						g.fillRoundRect(x, y, size, size, 10, 10);
+					} else {
+						g.fillRect(x, y, size, size);
+					}
 				}
 			}
 		});
