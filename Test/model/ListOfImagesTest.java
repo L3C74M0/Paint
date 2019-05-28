@@ -2,6 +2,8 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 class ListOfImagesTest {
@@ -24,13 +26,16 @@ class ListOfImagesTest {
 	@Test
 	public void selectNextTest() {
 		setupStage1();
-		setupStage2();
-
+		list.selectNext();
+		list.selectNext();
+		assertTrue(list.getFirst().getNext().isSelected(), "The wrong object or none was selected");
 	}
 
 	@Test
 	void testListOfImages() {
-
+		setupStage2();
+		ListOfImages loi = new ListOfImages();
+		assertTrue(loi.getFirst() == null, "The list is not empty");
 	}
 
 	@Test
@@ -60,12 +65,15 @@ class ListOfImagesTest {
 
 	@Test
 	void testGetFirst() {
-
+		setupStage1();
+		assertTrue(list.getFirst().getValue() == 0, "The attribute first hasn't been initialized correctly");
 	}
 
 	@Test
 	void testSetFirst() {
-
+		setupStage1();
+		list.setFirst(null);
+		assertTrue(list.getFirst() == null, "The setter method didn't work");
 	}
 
 	@Test
@@ -76,16 +84,24 @@ class ListOfImagesTest {
 
 	@Test
 	void testSelectPrevious() {
-
+		setupStage1();
+		list.selectPrevious();
+		list.selectPrevious();
+		assertTrue(list.getLastNode().isSelected(), "The wrong object or none was selected");
 	}
 
 	@Test
 	void testGetLastNode() {
-
+		setupStage1();
+		assertTrue(list.getLastNode().getValue() == 4, "The last object of the list doesn't coincide with the correct one");
 	}
 
 	@Test
 	void testLastSelected() {
-
+		setupStage1();
+		list.selectNext();
+		list.selectNext();
+		list.selectNext();
+		assertTrue(list.lastSelected().getValue() == 6, "The last selected object doesn't coincide with the correct one");
 	}
 }
