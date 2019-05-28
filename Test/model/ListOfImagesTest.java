@@ -30,7 +30,7 @@ class ListOfImagesTest {
 
 	@Test
 	public void selectNextTest() {
-		setupStage1();
+		setupStage2();
 		list.selectNext();
 		list.selectNext();
 		assertTrue(list.getFirst().getNext().isSelected(), "The wrong object or none was selected");
@@ -94,7 +94,7 @@ class ListOfImagesTest {
 
 	@Test
 	void testSelectPrevious() {
-		setupStage1();
+		setupStage2();
 		list.selectPrevious();
 		list.selectPrevious();
 		assertTrue(list.getLastNode().isSelected(), "The wrong object or none was selected");
@@ -102,13 +102,13 @@ class ListOfImagesTest {
 
 	@Test
 	void testGetLastNode() {
-		setupStage1();
+		setupStage2();
 		assertTrue(list.getLastNode().getValue() == 4, "The last object of the list doesn't coincide with the correct one");
 	}
 
 	@Test
 	void testLastSelected() {
-		setupStage1();
+		setupStage2();
 		list.selectNext();
 		list.selectNext();
 		list.selectNext();
