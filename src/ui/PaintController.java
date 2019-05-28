@@ -11,16 +11,12 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-
 import model.ListOfImages;
 import model.TreeOfImages;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 public class PaintController {
@@ -39,10 +35,7 @@ public class PaintController {
     
     @FXML
     private ComboBox<String> brushSize;
-    
-    @FXML
-    private Circle circles1;
-    
+
     private TreeOfImages treeOfImages;
     private ListOfImages listOfImages;
     

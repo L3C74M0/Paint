@@ -53,8 +53,8 @@
             </ToolBar>
         </VBox>
     </top>
-   <bottom>
+   <center>
         <Canvas fx:id="canvas" height="624.0" width="800.0" BorderPane.alignment="CENTER" />
-   </bottom>
+   </center>
 
 </BorderPane>
