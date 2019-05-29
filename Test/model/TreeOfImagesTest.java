@@ -1,7 +1,10 @@
 package model;
 
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +17,10 @@ class TreeOfImagesTest {
 	}
 	
 	private void setupScenary2() {
+		tree = new TreeOfImages();
+	}
+	
+	private void setupScenary3() {
 		this.tree = new TreeOfImages();
 		tree.addNode(5);
 		tree.addNode(2);
@@ -32,15 +39,16 @@ class TreeOfImagesTest {
 	}
 
 	@Test
-	void testAddNodeInt1() {
-		setupScenary2();
-		tree.addNode(10);
+	void testAddNodeInt() {
+		setupScenary3();
+		int value = 10;
+		tree.addNode(value);
 		assertTrue(search(tree, 10), "The ImageOnTree instance with value == 10 was not added.");
 	}
 
 	@Test
 	void testAddNodeImageOnTreeImageOnTree() {
-		setupScenary2();
+		setupScenary3();
 		ImageOnTree n = new ImageOnTree(9);
 		tree.addNode(n, tree.getRoot());
 		assertTrue(search(tree, 9), "The ImageOnTree instance with value == 9 was not added.");
@@ -48,21 +56,43 @@ class TreeOfImagesTest {
 
 	@Test
 	void testSelectRandomNode() {
-		setupScenary2();
+		setupScenary3();
 		ImageOnTree iot = tree.selectRandomNode();
 		assertTrue(search(tree, iot.getValue()), "The random node selected doesn't belong to the tree.");
+	}
+	@Test
+	void testSelectRandomNode2() {
+		setupScenary3();
+		int[] values = new int[2000];
+		for (int i = 0; i < 2000; i++) {
+			values[i] = tree.selectRandomNode().getValue();
+		}
+		boolean approximatelyRandom = approximatelyRandom(values);
+		assertTrue(approximatelyRandom, "The method isn't approximately random");
 	}
 
 	@Test
 	void testSize() {
-		setupScenary2();
+		setupScenary3();
 		assertTrue(tree.size() == 7, "The size method doesn't return the actual weight of the tree.");
+	}
+	
+	@Test
+	void testSize2() {
+		setupScenary2();
+		assertTrue(tree.size() == 0, "The size method does not return 0 when the tree is empty");
 	}
 
 	@Test
-	void testGetRoot() {
-		setupScenary2();
+	void testGetRoot2() {
+		setupScenary3();
 		assertTrue(tree.getRoot().getValue() == 5, "The root reference hasn't been correctly assigned.");
+	}
+	
+	@Test
+	void testGetRoot1() {
+		setupScenary2();
+		assertNull(tree.getRoot(), "The root reference should be null");
 	}
 	
 	public boolean search(TreeOfImages toi, int key) {
@@ -82,6 +112,35 @@ class TreeOfImagesTest {
 			}
 		}
 		return false;
+	}
+	//this method verifies that extreme cases don't happen when the random selection from the tree is used 
+	//a bunch of times. The method for "random selection" could return non-uniform pseudo-random results, 
+	//but anyways the extreme cases evaluated with this method should not happen.
+	public boolean approximatelyRandom(int[] values) {
+		ArrayList<Integer> differentValues = new ArrayList<Integer>();
+		for (int i = 0; i < values.length; i++) {
+			if(!differentValues.contains(values[i])) {
+				differentValues.add(values[i]);
+			}
+		}
+		int[] frequencies = new int[differentValues.size()];
+		for (int i = 0; i < differentValues.size(); i++) {
+			int sum = 0;
+			for (int j = 0; j < values.length; j++) {
+				if(differentValues.get(i).equals(values[j])) {
+					sum++;
+				}
+			}
+			frequencies[i] = sum;
+		}
+		for (int i = 0; i < frequencies.length; i++) {
+			System.out.print(frequencies[i] + " ");
+		}
+		for (int i = 0; i < frequencies.length; i++) {
+			if(frequencies[i] == 0 || frequencies[i] == values.length) 
+				return false;
+		}
+		return true;
 	}
 	
 }

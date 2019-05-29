@@ -102,24 +102,26 @@ public class PaintController {
 				g.clearRect(x, y, size, size);
 			} else {
 				if (shape.isSelected()) {
-					if (shapes.getValue().equals("Rectangle stroke")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeRect(x, y, size, size);
-					} else if (shapes.getValue().equals("Oval stroke")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeOval(x, y, size, size);
-					} else if (shapes.getValue().equals("Round rectangle stroke")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeRoundRect(x, y, size, size, 80, 80);
-					} else if (shapes.getValue().equals("Rectangle magic")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeRect(x, y, x+size, y+size);
-					} else if (shapes.getValue().equals("Oval magic")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeOval(x, y, x+size, y+size);
-					} else if (shapes.getValue().equals("Round rectangle magic")) {
-						g.setStroke(colorPicker.getValue());
-						g.strokeRoundRect(x, y, x+size, y+size, 80, 80);
+					if(shapes.getValue() != null){
+						if (shapes.getValue().equals("Rectangle stroke")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeRect(x, y, size, size);
+						} else if (shapes.getValue().equals("Oval stroke")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeOval(x, y, size, size);
+						} else if (shapes.getValue().equals("Round rectangle stroke")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeRoundRect(x, y, size, size, 20, 20);
+						} else if (shapes.getValue().equals("Rectangle magic")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeRect(x, y, x+size, y+size);
+						} else if (shapes.getValue().equals("Oval magic")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeOval(x, y, x+size, y+size);
+						} else if (shapes.getValue().equals("Round rectangle magic")) {
+							g.setStroke(colorPicker.getValue());
+							g.strokeRoundRect(x, y, x+size, y+size, 80, 80);
+						}
 					}
 				} else {
 					g.setFill(colorPicker.getValue());
@@ -137,9 +139,26 @@ public class PaintController {
 		});
     	
     	treeOfImages = new TreeOfImages();
-    	for (int i = 1; i <= 20; i++) {
-			treeOfImages.addNode(i);
-		}
+    	treeOfImages.addNode(10);
+    	treeOfImages.addNode(15);
+    	treeOfImages.addNode(12);
+    	treeOfImages.addNode(17);
+    	treeOfImages.addNode(11);
+    	treeOfImages.addNode(13);
+    	treeOfImages.addNode(14);
+    	treeOfImages.addNode(16);
+    	treeOfImages.addNode(19);
+    	treeOfImages.addNode(18);
+    	treeOfImages.addNode(20);
+    	treeOfImages.addNode(5);
+    	treeOfImages.addNode(2);
+    	treeOfImages.addNode(7);
+    	treeOfImages.addNode(1);
+    	treeOfImages.addNode(3);
+    	treeOfImages.addNode(4);
+    	treeOfImages.addNode(6);
+    	treeOfImages.addNode(8);
+    	treeOfImages.addNode(9);
     	listOfImages = new ListOfImages();
     	for (int i = 1; i <= 20; i++) {
 			listOfImages.addNode(i);
